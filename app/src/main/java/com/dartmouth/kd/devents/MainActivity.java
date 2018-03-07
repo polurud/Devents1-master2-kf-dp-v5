@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -65,7 +66,9 @@ public class MainActivity extends AppCompatActivity  {
         //}
         databaseReference = FirebaseDatabase.getInstance().getReference("masterSheet");
         Load_Urlevents  jsoupAsyncTask = new Load_Urlevents(this);
+
         jsoupAsyncTask.execute();
+        Log.d("All events size", String.valueOf(Load_Urlevents.allTheEvents.size()));
         Intent intent = new Intent(this, FunctionActivity.class);
         startActivity(intent);
         //if user isn't logged in, go to log in window
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onStart() {
+//        Log.d("All events size", String.valueOf(Load_Urlevents.allTheEvents.size()));
+//        Log.d("All events size", String.valueOf(Load_Urlevents.allTheEvents.size()));
         super.onStart();
 
         //
@@ -88,9 +93,9 @@ public class MainActivity extends AppCompatActivity  {
                 CampusEvent event = new CampusEvent();
                 event.setTitle(singleRun.get("title").toString());
                 event.setLocation(singleRun.get("location").toString());
-                event.setDate(singleRun.get("dateInMillis").toString());
-                event.setEnd(singleRun.get("endInMillis").toString());
-                event.setStart(singleRun.get("startInMillis").toString());
+                event.setDate(singleRun.get("date").toString());
+                event.setEnd(singleRun.get("end").toString());
+                event.setStart(singleRun.get("start").toString());
                 //event.setmDate(singleRun.get("Date").toString());
                 //event.setEnd(singleRun.get("End").toString());
                 //event.setStart(singleRun.get("Start").toString());
@@ -110,7 +115,7 @@ public class MainActivity extends AppCompatActivity  {
                 mEventDbHelper = new CampusEventDbHelper(mcontext);
 
                 new InsertIntoDbTask().execute(event);
-                //eventlist.add(event);
+//                eventlist.add(event);
             }
             }
             @Override

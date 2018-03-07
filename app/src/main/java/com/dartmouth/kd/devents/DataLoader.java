@@ -30,8 +30,9 @@ public class DataLoader extends AsyncTaskLoader<ArrayList<CampusEvent>> {
         CampusEventDbHelper mCampusEventDbHelper = new CampusEventDbHelper(mContext);
         ArrayList<CampusEvent> eventsList = mCampusEventDbHelper
                 .fetchEvents();
-        Log.d(Globals.TAGG,"Finished");
+//        Log.d(Globals.TAGG,"Finished");
 
+        Log.d(Globals.TAGG,String.valueOf(eventsList.size()));
         return eventsList;
     }
 }

@@ -138,8 +138,8 @@ public class CreateCampusEvent extends FragmentActivity {
             }
         });
 
-        newEvent = new CampusEvent();
-        mEventDbHelper = new CampusEventDbHelper(this);
+//        newEvent = new CampusEvent();
+//        mEventDbHelper = new CampusEventDbHelper(this);
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
@@ -214,14 +214,14 @@ public class CreateCampusEvent extends FragmentActivity {
     public void onDateSet(int year, int monthOfYear, int dayOfMonth){
         Log.d(Globals.TAGG, "Showing what day is " + dayOfMonth);
         newEvent.setDate(year, monthOfYear, dayOfMonth);
-        Log.d(Globals.TAGG, "Showing what date in millis is " + newEvent.getDateInMillis());
+        Log.d(Globals.TAGG, "Showing what date in millis is " + newEvent.getDate());
     }
 
 //    public void onStartSet(int hourOfDay, int minute) {
 //        Log.d(Globals.TAGG, "Showing what the minute is " + minute);
 //        newEvent.setStart(hourOfDay, minute);
 //    }
-
+//
 //    public void onEndSet(int hourOfDay, int minute) {
 //        newEvent.setEnd(hourOfDay, minute);
 //    }

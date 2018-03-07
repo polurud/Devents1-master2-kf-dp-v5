@@ -1,11 +1,13 @@
 package com.dartmouth.kd.devents;
 
+
 import android.util.Log;
 
 import com.google.firebase.database.Exclude;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.text.DateFormat;
 import java.util.Date;
@@ -20,9 +22,16 @@ public class CampusEvent {
     private String Title;
     private String Location;
     private String Description;
-    private Calendar Date;
-    private Calendar Start;
-    private Calendar End;
+//    private Calendar newDate;
+//    private Calendar Start;
+//    private Calendar End;
+
+
+
+    private String Date;
+    private String Start;
+    private String End;
+
     private String URL;
     private Double Latitude;
     private Double Longitude;
@@ -38,9 +47,14 @@ public class CampusEvent {
         this.Title = "";
         this.Location = "";
         this.Description = "";
-        this.Date = Calendar.getInstance();
-        this.Start = Calendar.getInstance();
-        this.End = Calendar.getInstance();
+//        this.newDate =Calendar.getInstance();
+////                new GregorianCalendar(2018, 02, 07);;
+//        this.Start = Calendar.getInstance();
+//        this.End = Calendar.getInstance();
+        this.Date ="";
+
+        this.Start= "";
+        this.End= "";
         this.URL = "";
         double dub = 0;
         this.Latitude = dub;
@@ -53,7 +67,31 @@ public class CampusEvent {
         this.Gender = 0;
         this.GreekSociety=0;
 
+    }
 
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String Date) {
+        this.Date = Date;
+    }
+
+    public String getStart() {
+        return Start;
+    }
+
+    public void setStart(String start) {
+        Start = start;
+    }
+
+    public String getEnd() {
+        return End;
+    }
+
+    public void setEnd(String end) {
+        End = end;
     }
 
     public Long getmId() {
@@ -104,98 +142,119 @@ public class CampusEvent {
         this.Description = Description;
     }
 
-    @Exclude
-    public Calendar getDate() {
-        return Date;
-    }
+//    @Exclude
+//    public Calendar getDate() {
+//        return newDate;
+//    }
 
-
-    public void setDate(String date) {
-        SimpleDateFormat mparser = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
-        try {
-            Start.setTime(mparser.parse(date));
-        }catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-
-    }
+//
+//    public void setDate(String date) {
+//
+//        SimpleDateFormat mparser = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+//        try {
+//            this.newDate.setTime(mparser.parse(date));
+//        }catch (java.text.ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     public void setDate(int day, int month, int year) {
-            Date.set(year, month, day);
-            Log.d("dfda", String.valueOf(Date.getTimeInMillis()));
+
+        Log.d("Date.....", String.valueOf(day)+"..."+String.valueOf(month)+"..."+String.valueOf(year) );
+
+//         Calendar newDate = Calendar.getInstance();
+//         newDate.set(01,01,2010);
+//        Log.d("New date example", newDate.toString());
+
+//            this.Date.set(year, month, day);
+
+//        this.newDate = new GregorianCalendar(2010, 06, 23);
+
+//
+//        this.newDate = new GregorianCalendar(year,month , day);
+//        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+//        String formatted = format1.format(this.newDate.getTime());
+//        System.out.println(formatted);
+//                Log.d("Try new date", formatted);
+//
+
+//        Log.d("Try new date", formatted);
+//        Log.d("Date.....", String.valueOf(day)+"..."+String.valueOf(month)+"..."+String.valueOf(year) );
+//            this.Date =  Date.set(year, month, day);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
+//        Calendar calendar = new GregorianCalendar(year,month,day);
+//
+//        Log.d("New Date.....", sdf.format(calendar.getTime()));
+
     }
 
+//    public long getDateInMillis() {
+//
+//
+////        Log.d("new date return value", String.valueOf(newDate.getTimeInMillis()));
+//        return newDate.getTimeInMillis();
+//    }
+//
+//    public long getStartInMillis() {
+//        return Start.getTimeInMillis();
+//    }
+//
+//    public long getEndInMillis(){
+//        return End.getTimeInMillis();
+//    }
 
-    public long getDateInMillis() {
-        return Date.getTimeInMillis();
-    }
-
-    public long getStartInMillis() {
-        return Start.getTimeInMillis();
-    }
-
-    public long getEndInMillis(){
-        return End.getTimeInMillis();
-    }
-
-
-    public void setStart(String start) {
-        SimpleDateFormat mparser = new SimpleDateFormat("HH:mm");
-
-        try {
-            Start.setTime(mparser.parse(start));
-        }catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setStart(int year, int month, int day, int hour, int minute) {
-        Start.set(Calendar.YEAR, year);
-        Start.set(Calendar.MONTH, month);
-        Start.set(Calendar.DAY_OF_MONTH, day);
-
-        Start.set(Calendar.HOUR_OF_DAY, hour);
-        Start.set(Calendar.MINUTE, minute);
-        //Start.set(year, month, day, hour, minute, 0);
-        Start.get(Calendar.DAY_OF_MONTH);
-        Start.getTimeInMillis();
-    }
+//
+//    public void setStart(String start) {
+//        SimpleDateFormat mparser = new SimpleDateFormat("HH:mm");
+//
+//        try {
+//            Start.setTime(mparser.parse(start));
+//        }catch (java.text.ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void setStart(int hour, int minute) {
+//
+//
+//        Start.set(Calendar.HOUR_OF_DAY, hour);
+//        Start.set(Calendar.MINUTE, minute);
+//
+//    }
 
     //public void setDateTime(String date){
     //    this.Date = date;
     //}
 
-    @Exclude
-    public Calendar getStart() {
-        return Start;
-    }
+//    @Exclude
+//    public Calendar getStart() {
+//        return Start;
+//    }
+//
+//
+//    public void setEnd(String end) {
+//        SimpleDateFormat mparser = new SimpleDateFormat("HH:mm");
+//        try {
+//            End.setTime(mparser.parse(end));
+//        }catch (java.text.ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void setEnd(int hour, int minute) {
+//        End.set(Calendar.HOUR_OF_DAY, hour);
+//        End.set(Calendar.MINUTE, minute);
+//
+//    }
 
-
-    public void setEnd(String end) {
-        SimpleDateFormat mparser = new SimpleDateFormat("HH:mm");
-        try {
-            End.setTime(mparser.parse(end));
-        }catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setEnd(int year, int month, int day,int hour, int minute) {
-
-        End.set(Calendar.YEAR, year);
-        End.set(Calendar.MONTH, month);
-        End.set(Calendar.DAY_OF_MONTH, day);
-        End.set(Calendar.HOUR_OF_DAY, hour);
-        End.set(Calendar.MINUTE, minute);
-
-    }
-
-    @Exclude
-    public Calendar getEnd() {
-        return End;
-    }
+//    @Exclude
+//    public Calendar getEnd() {
+//        return End;
+//    }
 
     public String getURL() {
+        Log.d("URL........", URL);
         return URL;
     }
 

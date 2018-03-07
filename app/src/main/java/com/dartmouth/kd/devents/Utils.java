@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 
 public class Utils {

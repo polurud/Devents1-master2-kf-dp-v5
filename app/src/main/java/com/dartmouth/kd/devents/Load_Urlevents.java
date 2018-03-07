@@ -13,8 +13,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -23,6 +27,7 @@ import java.util.List;
 
 public class Load_Urlevents extends AsyncTask<Void, Void, ArrayList<String>> {
 
+    public static ArrayList<CampusEvent> allTheEvents = new ArrayList<>();
     private Context mcontext;
     public Load_Urlevents(Context context)
     {
@@ -196,7 +201,9 @@ public class Load_Urlevents extends AsyncTask<Void, Void, ArrayList<String>> {
                 strtmn = Integer.parseInt(strtmin);
             }
 
+//            campus_event.setStart(strthr,strtmn);
 
+            campus_event.setStart(tempstart);
             //end time
             String tempend = finalList.get(3);
 
@@ -222,8 +229,8 @@ public class Load_Urlevents extends AsyncTask<Void, Void, ArrayList<String>> {
                  endmn = Integer.parseInt(endmin);
             }
 
-
-
+//            campus_event.setEnd(endhr,endmn);
+            campus_event.setEnd(tempend);
 
             //date in int year, int monthOfYear, int dayOfMonth
             String datestr = finalList.get(4);
@@ -281,30 +288,43 @@ public class Load_Urlevents extends AsyncTask<Void, Void, ArrayList<String>> {
             }
             if(month_str.contains("Dec"))
             {
-                month = 11;
+                month = 1;
             }
 
             String day_str = temp.substring(temp.indexOf(" ")+1,temp.indexOf(","));
 
             int day = Integer.parseInt(day_str);
-            campus_event.setDate(day,month,year);
-            campus_event.setStart(year,month, day,strthr,strtmn);
 
-            campus_event.setEnd(year,month, day,endhr,endmn);
+//            Log.d("Date...0..from parsing", String.valueOf(day));
+//            Calendar tempdates= null;
+//
+//             tempdates = new GregorianCalendar(day,month,year);
+//            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+//            String formatted = format1.format(tempdates.getTime());
+//            System.out.println(formatted);
+
+            campus_event.setDate(datestr);
+//            Log.d("Date.....", String.valueOf(day));
+
+
+
 
 
             campus_event.setDescription(finalList.get(5));
             campus_event.setLocation(finalList.get(6));
             double lati = 43.70566;
             campus_event.setLatitude(lati);
-            double longi = -72.288745;
-            campus_event.setLatitude(longi);
+            double longi = 72.288745;
+            campus_event.setLongitude(longi);
+            campus_event.setYear(year);
+
 
             long id = campusdb.insertEntry(campus_event);
-            Log.d("inserttinDB1", "inserttinDB1");
+//            Log.d("inserttinDB1", "inserttinDB1");
             //String key = mDatabase.push().getKey();
             String idString = String.valueOf(id);
             rootRef.child(idString).setValue(campus_event);
+//            allTheEvents.add(campus_event);
 
 
 

@@ -220,12 +220,18 @@ private class ActivityEntriesAdapter extends ArrayAdapter<CampusEvent> {
         //parse data to readable format
         String title = event.getTitle();
 
-        String dateString = Utils.parseDate(event.getDateInMillis(),
-                mContext);
-        String startString = Utils.parseStart(event.getStartInMillis(),
-                mContext);
-        String endString = Utils.parseEnd(event.getEndInMillis(),
-                mContext);
+//        String dateString = Utils.parseDate(event.getDateInMillis(),
+//                mContext);
+//        String startString = Utils.parseStart(event.getStartInMillis(),
+//                mContext);
+//        String endString = Utils.parseEnd(event.getEndInMillis(),
+//                mContext);
+
+
+        String dateString = event.getDate();
+
+        String startString = event.getStart();
+        String endString =event.getEnd();
 
         // Set text on the view.
         titleView.setText(dateString + ": " + title);
@@ -251,11 +257,18 @@ private class ActivityEntriesAdapter extends ArrayAdapter<CampusEvent> {
         extras.putLong(Globals.KEY_ROWID, event.getmId());
         extras.putString(Globals.KEY_TITLE,event.getTitle());
         extras.putString(Globals.KEY_DATE,
-                Utils.parseDate(event.getDateInMillis(), mContext));
+                event.getDate());
         extras.putString(Globals.KEY_START,
-                Utils.parseStart(event.getStartInMillis(), mContext));
+                event.getStart());
         extras.putString(Globals.KEY_END,
-                Utils.parseEnd(event.getEndInMillis(), mContext));
+                event.getEnd());
+
+//        extras.putString(Globals.KEY_DATE,
+//                Utils.parseDate(event.getDateInMillis(), mContext));
+//        extras.putString(Globals.KEY_START,
+//                Utils.parseStart(event.getStartInMillis(), mContext));
+//        extras.putString(Globals.KEY_END,
+//                Utils.parseEnd(event.getEndInMillis(), mContext));
         extras.putString(Globals.KEY_LOCATION,event.getLocation());
         extras.putString(Globals.KEY_DESCRIPTION,event.getDescription());
         extras.putDouble(Globals.KEY_LATITUDE, event.getLatitude());

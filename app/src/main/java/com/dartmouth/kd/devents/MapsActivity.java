@@ -145,12 +145,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Passing information for display in the DisplayEventActivity.
 
         extras.putString(Globals.KEY_TITLE,event.getTitle());
+//        extras.putString(Globals.KEY_DATE,
+//                Utils.parseDate(event.getDateInMillis(), mContext));
+//        extras.putString(Globals.KEY_START,
+//                Utils.parseStart(event.getStartInMillis(), mContext));
+//        extras.putString(Globals.KEY_END,
+//                Utils.parseEnd(event.getEndInMillis(), mContext));
+//
         extras.putString(Globals.KEY_DATE,
-                Utils.parseDate(event.getDateInMillis(), mContext));
+                (event.getDate()));
         extras.putString(Globals.KEY_START,
-                Utils.parseStart(event.getStartInMillis(), mContext));
+               event.getStart());
         extras.putString(Globals.KEY_END,
-                Utils.parseEnd(event.getEndInMillis(), mContext));
+               event.getEnd());
         extras.putString(Globals.KEY_LOCATION,event.getLocation());
         extras.putString(Globals.KEY_DESCRIPTION,event.getDescription());
         extras.putString(Globals.KEY_URL,event.getURL());

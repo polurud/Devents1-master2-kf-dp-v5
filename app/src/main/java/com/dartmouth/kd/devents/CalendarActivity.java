@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -148,7 +149,6 @@ public class CalendarActivity extends ListFragment implements LoaderManager.Load
     @Override
     public void onLoadFinished(Loader<ArrayList<CampusEvent>> loader, ArrayList<CampusEvent> campusEvents) {
         CampusEventDbHelper dbh = new CampusEventDbHelper(mContext);
-
         FilterDbHelper fdbh = new FilterDbHelper(mContext);
 
         currFilters = fdbh.getLastUsedFilter();
@@ -218,18 +218,29 @@ public class CalendarActivity extends ListFragment implements LoaderManager.Load
 
 //            String dateString = Utils.parseDate(event.getDateInMillis(),
 //                    mContext);
+
+            String dateString = event.getDate();
+//            String dateString2 = String.valueOf(event.getDateInMillis());
+//            Log.d("dateString2", dateString2);
+//            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+//            String formatted = format1.format(this.newDate.getTime());
+//            System.out.println(formatted);
+//        Log.d("Calender date", dateString+"....."+dateString2);
+
 //            String startString = Utils.parseStart(event.getStartInMillis(),
 //                    mContext);
 //            String endString = Utils.parseEnd(event.getEndInMillis(),
 //                    mContext);
+            String startString = event.getStart();
+            String endString = event.getEnd();
 
-            Calendar date = event.getStart();
-            Calendar date1 = event.getEnd();
+//            Calendar date = event.getStart();
+//            Calendar date1 = event.getEnd();
 
 
             // Set text on the view.
-            //titleView.setText(dateString + ": " + title);
-            //summaryView.setText(startString + "- " + endString);
+            titleView.setText(dateString + ": " + title);
+            summaryView.setText(startString + "- " + endString);
 
             return listItemView;
         }
@@ -250,12 +261,19 @@ public class CalendarActivity extends ListFragment implements LoaderManager.Load
         // Write row id into extras.
         extras.putLong(Globals.KEY_ROWID, event.getmId());
         extras.putString(Globals.KEY_TITLE,event.getTitle());
+//        extras.putString(Globals.KEY_DATE,
+//                Utils.parseDate(event.getDateInMillis(), mContext));
+//        extras.putString(Globals.KEY_START,
+//                Utils.parseStart(event.getStartInMillis(), mContext));
+//        extras.putString(Globals.KEY_END,
+//                Utils.parseEnd(event.getEndInMillis(), mContext));
         extras.putString(Globals.KEY_DATE,
-                Utils.parseDate(event.getDateInMillis(), mContext));
+                event.getDate());
         extras.putString(Globals.KEY_START,
-                Utils.parseStart(event.getStartInMillis(), mContext));
+                event.getStart());
         extras.putString(Globals.KEY_END,
-                Utils.parseEnd(event.getEndInMillis(), mContext));
+                event.getEnd());
+        extras.putString(Globals.KEY_URL,event.getURL());
         extras.putString(Globals.KEY_LOCATION,event.getLocation());
         extras.putString(Globals.KEY_DESCRIPTION,event.getDescription());
         extras.putDouble(Globals.KEY_LATITUDE, event.getLatitude());
@@ -268,6 +286,8 @@ public class CalendarActivity extends ListFragment implements LoaderManager.Load
         extras.putInt(Globals.KEY_YEAR,event.getYear());
         extras.putInt(Globals.KEY_GREEK_SOCIETY,event.getGreekSociety());
         extras.putInt(Globals.KEY_GENDER,event.getGender());
+
+
 
 
 

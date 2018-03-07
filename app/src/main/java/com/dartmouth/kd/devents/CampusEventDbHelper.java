@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 
 public class CampusEventDbHelper extends SQLiteOpenHelper {
+
+
     // Database name string
     public static final String DATABASE_NAME = "CampusEventsDB";
     // Table name string. (Only one table)
@@ -113,10 +115,17 @@ public class CampusEventDbHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
 
         value.put(KEY_TITLE, event.getTitle());
-        value.put(KEY_DATE, event.getDateInMillis());
-        Log.d(Globals.TAGG, "Showing what date in millis is " + event.getDateInMillis());
-        value.put(KEY_START, event.getStartInMillis());
-        value.put(KEY_END, event.getEndInMillis());
+//        value.put(KEY_DATE, event.getDateInMillis());
+//        Log.d(Globals.TAGG, "Showing what date in millis is " + event.getDateInMillis());
+//        value.put(KEY_START, event.getStartInMillis());
+//        value.put(KEY_END, event.getEndInMillis());
+
+        // new code..........................................
+
+        value.put(KEY_DATE, event.getDate());
+        Log.d(Globals.TAGG, "Showing what date in millis is " + event.getDate());
+        value.put(KEY_START, event.getStart());
+        value.put(KEY_END, event.getEnd());
 
         value.put(KEY_LOCATION, event.getLocation());
         value.put(KEY_DESCRIPTION, event.getDescription());
@@ -183,24 +192,28 @@ public class CampusEventDbHelper extends SQLiteOpenHelper {
 
     private CampusEvent cursorToEvent(Cursor cursor) {
         CampusEvent event = new CampusEvent();
-        event.setmId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
-        event.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
-        event.setTitle(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
-        event.setStart(cursor.getString(cursor.getColumnIndex(KEY_START)));
-        event.setEnd(cursor.getString(cursor.getColumnIndex(KEY_END)));
-        event.setLocation(cursor.getString(cursor.getColumnIndex(KEY_LOCATION)));
-        event.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
-        event.setURL(cursor.getString(cursor.getColumnIndex(KEY_URL)));
-        event.setLatitude(cursor.getDouble(cursor.getColumnIndex(KEY_LATITUDE)));
-        event.setLongitude(cursor.getDouble(cursor.getColumnIndex(KEY_LONGITUDE)));
-        event.setFood(cursor.getInt(cursor.getColumnIndex(KEY_FOOD)));
-        event.setMajor(cursor.getInt(cursor.getColumnIndex(KEY_MAJOR)));
-        event.setEventType(cursor.getInt(cursor.getColumnIndex(KEY_EVENT_TYPE)));
-        event.setProgramType(cursor.getInt(cursor.getColumnIndex(KEY_PROGRAM_TYPE)));
-        event.setYear(cursor.getInt(cursor.getColumnIndex(KEY_YEAR)));
-        event.setGreekSociety(cursor.getInt(cursor.getColumnIndex(KEY_GREEK_SOCIETY)));
-        event.setGender(cursor.getInt(cursor.getColumnIndex(KEY_GENDER)));
-        return event;
+
+            event.setmId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
+
+            event.setDate(cursor.getString(cursor.getColumnIndex(KEY_DATE)));
+            event.setTitle(cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
+            event.setStart(cursor.getString(cursor.getColumnIndex(KEY_START)));
+            event.setEnd(cursor.getString(cursor.getColumnIndex(KEY_END)));
+            event.setLocation(cursor.getString(cursor.getColumnIndex(KEY_LOCATION)));
+            event.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
+            event.setURL(cursor.getString(cursor.getColumnIndex(KEY_URL)));
+            event.setLatitude(cursor.getDouble(cursor.getColumnIndex(KEY_LATITUDE)));
+            event.setLongitude(cursor.getDouble(cursor.getColumnIndex(KEY_LONGITUDE)));
+            event.setFood(cursor.getInt(cursor.getColumnIndex(KEY_FOOD)));
+            event.setMajor(cursor.getInt(cursor.getColumnIndex(KEY_MAJOR)));
+            event.setEventType(cursor.getInt(cursor.getColumnIndex(KEY_EVENT_TYPE)));
+            event.setProgramType(cursor.getInt(cursor.getColumnIndex(KEY_PROGRAM_TYPE)));
+            event.setYear(cursor.getInt(cursor.getColumnIndex(KEY_YEAR)));
+            event.setGreekSociety(cursor.getInt(cursor.getColumnIndex(KEY_GREEK_SOCIETY)));
+            event.setGender(cursor.getInt(cursor.getColumnIndex(KEY_GENDER)));
+
+            return event;
+
     }
 
 
